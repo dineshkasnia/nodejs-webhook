@@ -1,9 +1,7 @@
 const express = require('express');
 const body_parser = require('body-parser');
 const axios = require("axios");
-
 require('dotenv').config();
-
 
 const app = express().use(body_parser.json());
 
@@ -19,7 +17,7 @@ app.get("/webhook", (req, res) => {
     let challenge = req.query["hub.challenge"];
     let token = req.query["hub.verify_token"];
 
-    // console.log(res);
+    console.log(mode, challenge, token);
 
     if(mode && token){
         if(mode==='subscribe' && token===mytoken){
