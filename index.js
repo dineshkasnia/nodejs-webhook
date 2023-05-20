@@ -38,7 +38,7 @@ app.post("/webhook", (req, res) => {
     if(body_param.object){
         if(body_param.entry && 
             body_param.entry[0].changes &&
-            body_param.entry[0].changes.value.messages &&
+            body_param.entry[0].changes.value.hasOwnProperty(messages) &&
             body_param.entry[0].changes.value.messages[0]
             ){
                 let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
