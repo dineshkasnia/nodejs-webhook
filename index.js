@@ -64,6 +64,7 @@ app.post("/webhook", (req, res) => {
     //             res.sendStatus(404);
     //         }
     // }
+    res.status(200).send('Hello this is webhook setup second');
 });
 
 app.get("/", (req,res) =>{
