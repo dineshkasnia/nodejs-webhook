@@ -8,9 +8,7 @@ const app = express().use(body_parser.json());
 const token=process.env.TOKEN;
 const mytoken =process.env.MYTOKEN;
 
-app.listen(process.env.PORT, () =>{
-    console.log('webhook is listening.');
-});
+
 
 // app.get("/webhook", (req, res) => {
 //     let mode = req.query["hub.mode"];
@@ -35,39 +33,44 @@ app.post("/webhook", (req, res) => {
 
     console.log(JSON.stringify(body_param, null, 2));
 
-    if(body_param.object){
-        if(body_param.entry && 
-            body_param.entry[0].changes
-            ){
-                let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
-                let from = body_param.entry[0].changes[0].value.metadata.display_phone_number;
-                let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
+    // if(body_param.object){
+    //     if(body_param.entry && 
+    //         body_param.entry[0].changes
+    //         ){
+    //             let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
+    //             let from = body_param.entry[0].changes[0].value.metadata.display_phone_number;
+    //             let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
 
 
-                axios({
-                    method:'POST',
-                    url:"https://graph.facebook.com/v16.0/"+phone_number_id+"/messages?access_token="+token,
-                    data:{
-                        messaging_product:"whatsapp",
-                        to:from,
-                        text:{
-                            body:"Hi.. I am dinesh kasnia"
-                        }
-                    },
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
-                });
+    //             axios({
+    //                 method:'POST',
+    //                 url:"https://graph.facebook.com/v16.0/"+phone_number_id+"/messages?access_token="+token,
+    //                 data:{
+    //                     messaging_product:"whatsapp",
+    //                     to:from,
+    //                     text:{
+    //                         body:"Hi.. I am dinesh kasnia"
+    //                     }
+    //                 },
+    //                 headers:{
+    //                     "Content-Type":"application/json"
+    //                 }
+    //             });
 
-                res.sendStatus(200);
+    //             res.sendStatus(200);
 
-            }
-            else{
-                res.sendStatus(404);
-            }
-    }
+    //         }
+    //         else{
+    //             res.sendStatus(404);
+    //         }
+    // }
 });
 
 app.get("/", (req,res) =>{
     res.status(200).send('Hello this is webhook setup');
-})
+});
+
+
+app.listen(process.env.PORT, () =>{
+    console.log('webhook is listening.');
+});
