@@ -41,7 +41,7 @@ app.post("/webhook", (req, res) => {
             ){
                 let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
                 let from = body_param.entry[0].changes[0].value.metadata.display_phone_number;
-                let msg_body = body_param.entry[0].changes[0].value.messages[0].text.body;
+                let msg_body = body_param.entry[0].changes[0].value.messages[0].text.body ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
 
 
                 axios({
