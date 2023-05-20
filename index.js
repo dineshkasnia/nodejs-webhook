@@ -2,12 +2,15 @@ const express = require('express');
 const body_parser = require('body-parser');
 const axios = require("axios");
 
+require('dotenv').config();
+
+
 const app = express().use(body_parser.json());
 
-const token="no token here";
-const mytoken ="dinesh";
+const token=process.env.TOKEN;
+const mytoken =process.env.MYTOKEN;
 
-app.listen(8000, () =>{
+app.listen(process.env.PORT, () =>{
     console.log('webhook is listening.');
 });
 
