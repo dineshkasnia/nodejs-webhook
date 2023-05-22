@@ -42,7 +42,8 @@ app.post("/webhook", (req, res) => {
 
                 console.log('phone number'+phone_number_id);
                 console.log('from'+from);
-                console.log('message'+msg_body)
+                console.log('message'+msg_body);
+                console.lo(token);
                 axios({
                     method:'POST',
                     url:"https://graph.facebook.com/v16.0/"+phone_number_id+"/messages?access_token="+token,
