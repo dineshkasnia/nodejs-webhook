@@ -85,10 +85,19 @@ app.post("/webhook", (req, res) => {
 });
 
 app.get("/", (req,res) =>{
+                // let sql = "INSERT INTO webhook(business_account_id, phone_number_id, message_id) VALUES('1', '2', '3')";
+                // connection.query(sql, (err, rows) => {
+                //     if(err){
+                //         console.log(JSON.stringify(err, undefined, 2));
+                //     }
+                //     else{
+                //         console.log('submitted');
+                //     }
+                // });
     res.status(200).send('Hello this is webhook setup');
 });
 
 
-app.listen(process.env.PORT, () =>{
+app.listen(8000 || process.env.PORT, () =>{
     console.log('webhook is listening.');
 });
