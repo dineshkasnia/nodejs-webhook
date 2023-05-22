@@ -48,16 +48,16 @@ app.post("/webhook", (req, res) => {
 
                 console.log(business_account_id, phone_number_id, message_id);
 
-                let data = [business_account_id, phone_number_id, message_id];
-                let sql = "INSERT INTO webhook(business_account_id, phone_number_id, message_id) VALUES('1', '2', '3')";
-                connection.query(sql, (err, rows) => {
-                    if(err){
-                        console.log(JSON.stringify(err, undefined, 2));
-                    }
-                    else{
-                        console.log('submitted');
-                    }
-                });
+                // let data = [business_account_id, phone_number_id, message_id];
+                // let sql = "INSERT INTO webhook(business_account_id, phone_number_id, message_id) VALUES('1', '2', '3')";
+                // connection.query(sql, (err, rows) => {
+                //     if(err){
+                //         console.log(JSON.stringify(err, undefined, 2));
+                //     }
+                //     else{
+                //         console.log('submitted');
+                //     }
+                // });
               
                 // axios({
                 //     method:"POST",
