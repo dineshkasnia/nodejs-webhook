@@ -39,14 +39,14 @@ app.post("/webhook", (req, res) => {
             ){
                 let business_account_id = body_param.entry.id;
                 let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
-                let message_id =  body_param.entry[0].statuses ? body_param.entry[0].statuses[0].id : body_param.entry[0].changes[0].messages[0].id;
-                let user_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].messages[0].from : body_param.entry[0].changes[0].value.metadata.display_phone_number;
-                let receiver_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].value.metadata.display_phone_number : body_param.entry[0].changes[0].messages[0].from;
-                let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
+                let message_id =  "545884574858454";
+                // let user_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].messages[0].from : body_param.entry[0].changes[0].value.metadata.display_phone_number;
+                // let receiver_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].value.metadata.display_phone_number : body_param.entry[0].changes[0].messages[0].from;
+                // let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
                 // let from = body_param.entry[0].changes[0].value.messages[0].from;
                 // let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
 
-                console.log(business_account_id, phone_number_id, message_id, user_phone_number, receiver_phone_number, msg_body);
+                console.log(business_account_id, phone_number_id, message_id);
 
                 let data = [business_account_id, phone_number_id, message_id];
 
