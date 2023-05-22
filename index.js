@@ -40,7 +40,7 @@ app.post("/webhook", (req, res) => {
                 let from = body_param.entry[0].changes[0].value.metadata.display_phone_number;
                 let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
 
-
+                console.log('inside');
                 axios({
                     method:'POST',
                     url:"https://graph.facebook.com/v16.0/"+phone_number_id+"/messages?access_token="+token,
