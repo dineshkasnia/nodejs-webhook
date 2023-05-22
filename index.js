@@ -2,6 +2,7 @@ const express = require('express');
 const body_parser = require('body-parser');
 const axios = require("axios");
 require('dotenv').config();
+const connection = require('./connection');
 
 const app = express().use(body_parser.json());
 
@@ -36,10 +37,27 @@ app.post("/webhook", (req, res) => {
         if(body_param.entry && 
             body_param.entry[0].changes
             ){
-                // let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
+                let business_account_id = body_param.entry.id;
+                let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
+                let message_id =  body_param.entry[0].statuses ? body_param.entry[0].statuses[0].id : body_param.entry[0].changes[0].messages[0].id;
+                let user_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].messages[0].from : body_param.entry[0].changes[0].value.metadata.display_phone_number;
+                let receiver_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].value.metadata.display_phone_number : body_param.entry[0].changes[0].messages[0].from;
+                let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
                 // let from = body_param.entry[0].changes[0].value.messages[0].from;
                 // let msg_body = body_param.entry[0].changes[0].value.messages ? body_param.entry[0].changes[0].value.messages[0].text.body : "";
 
+                console.log(business_account_id, phone_number_id, message_id, user_phone_number, receiver_phone_number, msg_body);
+
+                let data = [business_account_id, phone_number_id, message_id];
+
+                connection.query('INSERT INTO webhook(business_account_id, phone_number_id, message_id) VALUES(?)', [data], (err, rows) => {
+                    if(err){
+                        console.log(err)
+                    }
+                    else{
+                        console.log('submitted');
+                    }
+                });
               
                 // axios({
                 //     method:"POST",
