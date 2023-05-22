@@ -44,22 +44,23 @@ app.post("/webhook", (req, res) => {
                 console.log('from'+from);
                 console.log('message'+msg_body);
                 console.log(token);
-                axios({
-                    method:"POST",
-                    url:"https://graph.facebook.com/v16.0/"+phone_number_id+"/messages?access_token="+token,
-                    data:{
-                        messaging_product:"whatsapp",
-                        to:from,
-                        text:{
-                            body:"Hi.. I am dinesh kasnia"
-                        }
-                    },
-                    headers:{
-                        "Content-Type":"application/json"
-                    }
-                });
+                // axios({
+                //     method:"POST",
+                //     url:"https://graph.facebook.com/v16.0/"+phone_number_id+"/messages?access_token="+token,
+                //     data:{
+                //         messaging_product:"whatsapp",
+                //         to:from,
+                //         text:{
+                //             body:"Hi.. I am dinesh kasnia"
+                //         }
+                //     },
+                //     headers:{
+                //         "Content-Type":"application/json"
+                //     }
+                // });
 
                 res.sendStatus(200);
+                res.end();
 
             }
             else{
