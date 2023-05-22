@@ -1,17 +1,23 @@
 const mysql = require('mysql2');
-var mysqlConnection = mysql.createConnection({
+let connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
     database:'webhook'
 });
-var connection = mysqlConnection.connect((err) => {
-    if(err){
-        console.log('error:'+JSON.stringify(err, undefined, 2));
-    }
-    else{
-        console.log('connection is ok');
-    }
-})
+
+
+connection.connect();
+
+
+// let sql = "INSERT INTO webhook(business_account_id, phone_number_id, message_id) VALUES('1', '2', '3')";
+// connection.query(sql, (err, rows) => {
+//     if(err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log('submitted');
+//     }
+// });
 
 module.exports = connection;

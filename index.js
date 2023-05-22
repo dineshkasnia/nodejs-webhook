@@ -37,7 +37,7 @@ app.post("/webhook", (req, res) => {
         if(body_param.entry && 
             body_param.entry[0].changes
             ){
-                let business_account_id = body_param.entry.id;
+                let business_account_id = body_param.entry[0].id;
                 let phone_number_id = body_param.entry[0].changes[0].value.metadata.phone_number_id;
                 let message_id =  "545884574858454";
                 // let user_phone_number = body_param.entry[0].changes[0].messages ? body_param.entry[0].changes[0].messages[0].from : body_param.entry[0].changes[0].value.metadata.display_phone_number;
@@ -52,7 +52,7 @@ app.post("/webhook", (req, res) => {
 
                 connection.query('INSERT INTO webhook(business_account_id, phone_number_id, message_id) VALUES(?)', [data], (err, rows) => {
                     if(err){
-                        console.log(err)
+                        console.log(err);
                     }
                     else{
                         console.log('submitted');
